@@ -105,7 +105,7 @@ public class NewServerWizardFragment extends WizardFragment {
 		if (getTaskModel() == null)
 			return;
 		
-		Byte b = (Byte) getTaskModel().getObject(WizardTaskUtil.TASK_MODE);
+		Byte b = getMode();
 		if (b != null && b.byteValue() == MODE_MANUAL) {
 			IRuntime runtime = (IRuntime) getTaskModel().getObject(TaskModel.TASK_RUNTIME);
 			if (runtime != null && runtime instanceof IRuntimeWorkingCopy) {
@@ -139,6 +139,14 @@ public class NewServerWizardFragment extends WizardFragment {
 				if (server != null)
 					list.add(new TasksWizardFragment());
 			}*/
+		}
+	}
+
+	private Byte getMode() {
+		try {
+			return (Byte) getTaskModel().getObject(WizardTaskUtil.TASK_MODE);
+		} catch (Exception e) {
+			return null;
 		}
 	}
 
